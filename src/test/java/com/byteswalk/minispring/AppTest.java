@@ -1,38 +1,26 @@
 package com.byteswalk.minispring;
 
-import junit.framework.Test;
+import com.byteswalk.minispring.bean.UserService;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.junit.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+public class AppTest {
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+    @Test
+    public void test_BeanFactory() {
+        // 1. 初始化 BeanFactory
+        BeanFactory beanFactory = new BeanFactory();
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+        // 2. 注册 Bean 对象
+        BeanDefinition beanDefinition = new BeanDefinition(new UserService());
+        beanFactory.registerBeanDefinition("userService", beanDefinition);
+
+        // 3. 获取 Bean 对象
+        UserService userService = (UserService) beanFactory.getBean("userService");
+        userService.queryUserInfos();
     }
 }
