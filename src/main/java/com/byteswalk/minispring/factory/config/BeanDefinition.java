@@ -1,4 +1,4 @@
-package com.byteswalk.minispring;
+package com.byteswalk.minispring.factory.config;
 
 /**
  * @author hao shichuan
@@ -7,15 +7,17 @@ package com.byteswalk.minispring;
  */
 public class BeanDefinition {
 
-    @SuppressWarnings({"all"})
-    private Object bean;
+    private Class bean;
 
-    public BeanDefinition(Object bean) {
+    public BeanDefinition(Class bean) {
         this.bean = bean;
     }
 
-    public Object getBean() {
+    public Class getBean() {
         return bean;
     }
 
+    public void setBean(Class bean) {
+        this.bean = bean;
+    }
 }
