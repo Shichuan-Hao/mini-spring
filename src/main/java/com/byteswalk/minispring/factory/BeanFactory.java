@@ -1,4 +1,6 @@
-package com.byteswalk.minispring;
+package com.byteswalk.minispring.factory;
+
+import com.byteswalk.minispring.BeansException;
 
 /**
  * @author hao shichuan
@@ -7,5 +9,8 @@ package com.byteswalk.minispring;
  */
 public interface BeanFactory {
     Object getBean(String name)
-            throws BeanException;
+            throws BeansException;
+
+    Object getBean(String name, Object... args)
+            throws BeansException;
 }

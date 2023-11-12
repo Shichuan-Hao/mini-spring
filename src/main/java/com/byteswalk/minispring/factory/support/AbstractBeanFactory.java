@@ -1,9 +1,8 @@
 package com.byteswalk.minispring.factory.support;
 
-import com.byteswalk.minispring.BeanException;
-import com.byteswalk.minispring.BeanFactory;
+import com.byteswalk.minispring.BeansException;
+import com.byteswalk.minispring.factory.BeanFactory;
 import com.byteswalk.minispring.factory.config.BeanDefinition;
-import com.byteswalk.minispring.factory.config.DefaultSingletonBeanRegistry;
 
 /**
  * @author hao shichuan
@@ -13,20 +12,28 @@ public abstract class AbstractBeanFactory
         extends DefaultSingletonBeanRegistry
         implements BeanFactory {
 
-    public Object getBean(String beanName)
-            throws BeanException {
-        Object bean = getSingleton(beanName);
-        if (bean != null) {
-            return bean;
-        }
-        BeanDefinition beanDefinition = getBeanDefinition(beanName);
-        return createBean(beanName, beanDefinition);
+    public Object getBean(String name)
+            throws BeansException {
+        return doGetBean(name, null);
+    }
 
+    @Override
+    public Object getBean(String name, Object... args) throws BeansException {
+        return doGetBean(name, args);
+    }
+
+    protected <T> T doGetBean(final String name, final Object[] args) {
+        Object bean = getSingleton(name);
+        if (bean != null) {
+            return (T) bean;
+        }
+        BeanDefinition beanDefinition = getBeanDefinition(name);
+        return (T) createBean(name, beanDefinition, args);
     }
 
     protected abstract BeanDefinition getBeanDefinition(String beanName)
-            throws BeanException;
+            throws BeansException;
 
-    protected abstract Object createBean(String beanName, BeanDefinition beanDefinition)
-            throws BeanException;
+    protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args)
+            throws BeansException;
 }

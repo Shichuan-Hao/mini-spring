@@ -1,4 +1,6 @@
-package com.byteswalk.minispring.factory.config;
+package com.byteswalk.minispring.factory.support;
+
+import com.byteswalk.minispring.factory.config.SingletonBeanRegistry;
 
 import java.util.HashMap;
 import java.util.Map;

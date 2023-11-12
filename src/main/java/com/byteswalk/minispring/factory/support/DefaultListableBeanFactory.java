@@ -1,6 +1,6 @@
 package com.byteswalk.minispring.factory.support;
 
-import com.byteswalk.minispring.BeanException;
+import com.byteswalk.minispring.BeansException;
 import com.byteswalk.minispring.factory.config.BeanDefinition;
 
 import java.util.HashMap;
@@ -23,11 +23,12 @@ import java.util.Map;
 
     @Override
     public BeanDefinition getBeanDefinition(String beanName)
-            throws BeanException {
+            throws BeansException {
         BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
         if (beanDefinition == null) {
-            throw new BeanException("No bean named '" + beanName + "' is defined");
+            throw new BeansException("No bean named '" + beanName + "' is defined");
         }
         return beanDefinition;
     }
+
 }

@@ -4,14 +4,14 @@ package com.byteswalk.minispring;
  * @author hao shichuan
  * @date 2023/11/9 15:24
  */
-public class BeanException
+public class BeansException
         extends RuntimeException {
 
-    public BeanException(String msg) {
+    public BeansException(String msg) {
         super(msg);
     }
 
-    public BeanException(String msg, Throwable cause) {
+    public BeansException(String msg, Throwable cause) {
         super(msg, cause);
     }
 

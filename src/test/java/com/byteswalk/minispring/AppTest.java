@@ -26,7 +26,7 @@ public class AppTest {
     }
 
     @Test
-    public void test_BeanFactory_2() {
+    public void test_newInstance() {
         // 1. 初始化 BeanFactory 接口
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
@@ -47,5 +47,19 @@ public class AppTest {
         System.out.println(userService.hashCode());
         System.out.println(userService_singleton.hashCode());
         System.out.println(userService.equals(userService_singleton));
+    }
+
+    @Test
+    public void test_BeanFactory() {
+        // 1. 初始化 BeanFactory 接口
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+
+        // 2. 注册 Bean 对象
+        BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
+        beanFactory.registerBeanDefinition("userService", beanDefinition);
+
+        // 3. 获取 Bean 对象
+        UserService userService = (UserService) beanFactory.getBean("userService", "川哥");
+        userService.queryUserInfos();
     }
 }
